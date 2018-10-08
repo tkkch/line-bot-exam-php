@@ -3,8 +3,15 @@
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
-$access_token = '3ALKAbKFoGuJyJnoDdn0HeyfbxLFtEXBKiC0lFeoNl/XbL4WhoCZzefp2n7UDuXaCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRUaKehDkiCr5p5CakHrPX+gauOGX/R5bB2e5yi7xjnHDAdB04t89/1O/w1cDnyilFU=';
+$access_token = 'dgKDSMyshkd4gM6/V/Rq2bLBY22Pt1g+VqdujDwlwqY47vlYZVk1pKdFjFkd0E/JcMhQSD38da9Heb83aeAHiRtZUjRLIgL33hpU8aoMW4niITIzrRKCpjhhK1xMoIFgfPcirrLBIHtYI0OB0puZUQdB04t89/1O/w1cDnyilFU=';
+$channelSecret ='f84abb118210a579c668c040bce4b972';
+$idPush='ttonkla'
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
+$response = $bot->pushMessage($idPush, $textMessageBuilder);
 
+echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
